@@ -237,6 +237,11 @@
 
     .north-star-content {
       padding: var(--space-6);
+      /*
+        Keep North Star tabs at a stable page height so switching from a taller
+        Mindset rink view to shorter card views does not force a jarring scroll clamp.
+      */
+      min-height: clamp(560px, 66vh, 760px);
     }
 
     .content-stack {
@@ -438,6 +443,43 @@
       padding: var(--space-6);
     }
 
+    .systems-mobile-picker {
+      display: none;
+      margin: var(--space-5) 0 var(--space-2);
+      padding: var(--space-4);
+      border: 1px solid var(--color-slate-200);
+      border-radius: var(--radius-md);
+      background: var(--color-slate-50);
+    }
+
+    .systems-mobile-picker__label {
+      display: block;
+      margin: 0 0 var(--space-2);
+      color: var(--color-red-600);
+      font-size: 0.76rem;
+      font-weight: 900;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+    }
+
+    .systems-mobile-picker__select {
+      width: 100%;
+      min-height: 46px;
+      border: 1px solid var(--color-slate-200);
+      border-radius: var(--radius-sm);
+      padding: 0.72rem 0.85rem;
+      color: var(--color-navy-900);
+      background: var(--color-white);
+      font: inherit;
+      font-weight: 800;
+    }
+
+    .systems-mobile-picker__hint {
+      margin: var(--space-2) 0 0;
+      color: var(--color-slate-500);
+      font-size: 0.88rem;
+    }
+
     .systems-placeholder-box {
       display: grid;
       place-items: center;
@@ -478,8 +520,14 @@
 
       .primary-nav {
         position: sticky;
-        top: var(--space-2);
+        top: 0;
         z-index: 10;
+        margin-inline: calc(var(--space-2) * -1);
+        border-radius: 0 0 var(--radius-lg) var(--radius-lg);
+        border-color: rgba(255, 255, 255, 0.16);
+        background: rgba(7, 20, 38, 0.97);
+        box-shadow: 0 12px 26px rgba(7, 20, 38, 0.28);
+        backdrop-filter: none;
       }
 
       .secondary-nav {
@@ -501,14 +549,11 @@
       }
 
       .systems-sidebar {
-        position: static;
-        max-height: none;
-        overflow: visible;
-        padding: var(--space-4);
+        display: none;
       }
 
-      .systems-nav {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
+      .systems-mobile-picker {
+        display: block;
       }
     }
 
@@ -634,6 +679,13 @@
             <p class="eyebrow">Tactical Framework</p>
             <h2 id="systems-title" class="panel-title">Systems</h2>
             <span class="placeholder-note">Placeholder page — animation engine and tactical content will be built later</span>
+
+            <div class="systems-mobile-picker" aria-label="Mobile systems topic selector">
+              <label class="systems-mobile-picker__label" for="systems-mobile-select">Choose topic</label>
+              <select id="systems-mobile-select" class="systems-mobile-picker__select"></select>
+              <p id="systems-mobile-hint" class="systems-mobile-picker__hint">Selected content updates below.</p>
+            </div>
+
             <div id="systems-content-panel" aria-live="polite"></div>
           </article>
         </div>
@@ -800,19 +852,37 @@
     function renderSystemsNavigation() {
       const mainNav = document.getElementById("systems-nav-main");
       const referenceNav = document.getElementById("systems-nav-reference");
+      const mobileSelect = document.getElementById("systems-mobile-select");
 
       mainNav.innerHTML = systemItems.map((item) => systemButtonTemplate(item)).join("");
       referenceNav.innerHTML = referenceItems.map((item) => systemButtonTemplate(item)).join("");
+
+      if (mobileSelect) {
+        mobileSelect.innerHTML = `
+          <optgroup label="Systems">
+            ${systemItems.map((item) => systemOptionTemplate(item)).join("")}
+          </optgroup>
+          <optgroup label="Reference">
+            ${referenceItems.map((item) => systemOptionTemplate(item)).join("")}
+          </optgroup>
+        `;
+
+        mobileSelect.addEventListener("change", () => {
+          appState.activeSystem = mobileSelect.value;
+          renderSystemsContent();
+          syncSystemsNavigation();
+        });
+      }
 
       document.querySelectorAll("[data-system-target]").forEach((button) => {
         button.addEventListener("click", () => {
           appState.activeSystem = button.dataset.systemTarget;
           renderSystemsContent();
-          setActiveButton("[data-system-target]", "systemTarget", appState.activeSystem);
+          syncSystemsNavigation();
         });
       });
 
-      setActiveButton("[data-system-target]", "systemTarget", appState.activeSystem);
+      syncSystemsNavigation();
     }
 
     function systemButtonTemplate(item) {
@@ -823,10 +893,28 @@
       `;
     }
 
+    function systemOptionTemplate(item) {
+      return `<option value="${item.id}">${item.label}</option>`;
+    }
+
+    function syncSystemsNavigation() {
+      setActiveButton("[data-system-target]", "systemTarget", appState.activeSystem);
+
+      const mobileSelect = document.getElementById("systems-mobile-select");
+      if (mobileSelect) {
+        mobileSelect.value = appState.activeSystem;
+      }
+    }
+
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
       const contentPanel = document.getElementById("systems-content-panel");
+      const mobileHint = document.getElementById("systems-mobile-hint");
+
+      if (mobileHint) {
+        mobileHint.textContent = `Current topic: ${activeItem.label}`;
+      }
 
       contentPanel.innerHTML = `
         <div class="systems-placeholder-box">
