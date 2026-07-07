@@ -531,7 +531,15 @@
       }
 
       .secondary-nav {
+        flex-wrap: wrap;
         margin-inline: var(--space-4);
+        overflow-x: visible;
+      }
+
+      .secondary-nav__button {
+        flex: 1 1 calc(50% - var(--space-2));
+        white-space: normal;
+        text-align: center;
       }
 
       .panel-header,
