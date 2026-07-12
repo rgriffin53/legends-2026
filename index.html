@@ -764,8 +764,10 @@
     }
 
     .systems-content {
+      min-width: 0;
       min-height: 520px;
       padding: var(--space-6);
+      overflow-x: clip;
     }
 
     .systems-mobile-picker {
@@ -829,6 +831,8 @@
 
     /* ---------- Neutral-Zone Trap Storyboard ---------- */
     .system-storyboard {
+      min-width: 0;
+      width: 100%;
       display: grid;
       gap: var(--space-5);
       margin-top: var(--space-6);
@@ -937,6 +941,8 @@
     }
 
     .storyboard-frame {
+      min-width: 0;
+      width: 100%;
       display: grid;
       gap: var(--space-4);
       animation: storyboardFade 160ms ease-out;
@@ -976,6 +982,9 @@
     }
 
     .storyboard-diagram {
+      min-width: 0;
+      width: 100%;
+      max-width: 100%;
       margin: 0;
       border: 1px solid var(--color-slate-200);
       border-radius: var(--radius-lg);
@@ -986,6 +995,7 @@
 
     .storyboard-diagram img {
       width: 100%;
+      max-width: 100%;
       height: auto;
       display: block;
     }
@@ -1152,6 +1162,7 @@
     }
 
     .storyboard-coaching-layout {
+      min-width: 0;
       display: grid;
       grid-template-columns: minmax(250px, 0.9fr) minmax(320px, 1.35fr);
       gap: var(--space-4);
@@ -1361,6 +1372,24 @@
     }
 
     /* ---------- Responsive Layout ---------- */
+    /*
+      The desktop Systems shell remains two columns down to 821px. At those
+      intermediate widths, the coaching selector and notebook cannot safely
+      remain side by side inside the narrower content column. Stack only those
+      controls before the full mobile navigation breakpoint so the rink and all
+      storyboard content stay contained by the white card.
+    */
+    @media (max-width: 1020px) and (min-width: 821px) {
+      .storyboard-coaching-layout {
+        grid-template-columns: minmax(0, 1fr);
+      }
+
+      .storyboard-position-panel,
+      .coaching-notebook {
+        min-width: 0;
+      }
+    }
+
     @media (max-width: 820px) {
       .app-shell {
         width: min(100% - 1rem, var(--max-width));
@@ -1858,7 +1887,8 @@
         navId: "systems-nav-neutral",
         items: [
           { id: "neutral-zone-forecheck", label: "Neutral-Zone Trap" },
-          { id: "backchecking", label: "Backchecking" }
+          { id: "backchecking", label: "Backchecking" },
+          { id: "line-changes", label: "Line Changes" }
         ]
       },
       {
@@ -1869,8 +1899,7 @@
           { id: "o-zone-entry", label: "O-Zone Entry" },
           { id: "o-zone-forecheck", label: "O-Zone Forecheck" },
           { id: "o-zone-offense", label: "O-Zone Offense" },
-          { id: "o-zone-faceoff", label: "O-Zone Faceoff" },
-          { id: "line-changes", label: "Line Changes" }
+          { id: "o-zone-faceoff", label: "O-Zone Faceoff" }
         ]
       },
       {
