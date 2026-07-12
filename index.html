@@ -1606,8 +1606,23 @@
         <div class="systems-layout">
           <aside class="card systems-sidebar" aria-label="Systems navigation">
             <div class="systems-group">
-              <h2 class="systems-group__title">Systems</h2>
-              <nav id="systems-nav-main" class="systems-nav"></nav>
+              <h2 class="systems-group__title">Defensive Zone</h2>
+              <nav id="systems-nav-defensive" class="systems-nav"></nav>
+            </div>
+
+            <div class="systems-group">
+              <h2 class="systems-group__title">Neutral Zone</h2>
+              <nav id="systems-nav-neutral" class="systems-nav"></nav>
+            </div>
+
+            <div class="systems-group">
+              <h2 class="systems-group__title">Offensive Zone</h2>
+              <nav id="systems-nav-offensive" class="systems-nav"></nav>
+            </div>
+
+            <div class="systems-group">
+              <h2 class="systems-group__title">Special Teams</h2>
+              <nav id="systems-nav-special-teams" class="systems-nav"></nav>
             </div>
 
             <div class="systems-group">
@@ -1826,21 +1841,52 @@
       }
     };
 
-    const systemItems = [
-      { id: "d-zone-coverage", label: "D-zone coverage" },
-      { id: "d-zone-break-out", label: "D-zone break out" },
-      { id: "d-zone-face-off", label: "D-zone face-off" },
-      { id: "neutral-zone-forecheck", label: "Neutral-Zone Trap" },
-      { id: "neutral-zone-possession", label: "Neutral zone possession" },
-      { id: "neutral-zone-face-off", label: "Neutral zone face-off" },
-      { id: "o-zone-entry", label: "O-zone entry" },
-      { id: "o-zone-possession", label: "O-zone possession" },
-      { id: "o-zone-forecheck", label: "O-zone forecheck" },
-      { id: "pk-5-4", label: "5-4 Penalty Kill" },
-      { id: "pk-5-3", label: "5-3 Penalty Kill" },
-      { id: "pp-5-4", label: "5-4 Power Play" },
-      { id: "pp-5-3", label: "5-3 Power Play" }
+    const systemGroups = [
+      {
+        id: "defensive",
+        label: "Defensive Zone",
+        navId: "systems-nav-defensive",
+        items: [
+          { id: "d-zone-coverage", label: "D-Zone Coverage" },
+          { id: "d-zone-breakout", label: "D-Zone Breakout" },
+          { id: "d-zone-faceoff", label: "D-Zone Faceoff" }
+        ]
+      },
+      {
+        id: "neutral",
+        label: "Neutral Zone",
+        navId: "systems-nav-neutral",
+        items: [
+          { id: "neutral-zone-forecheck", label: "Neutral-Zone Trap" },
+          { id: "backchecking", label: "Backchecking" }
+        ]
+      },
+      {
+        id: "offensive",
+        label: "Offensive Zone",
+        navId: "systems-nav-offensive",
+        items: [
+          { id: "o-zone-entry", label: "O-Zone Entry" },
+          { id: "o-zone-forecheck", label: "O-Zone Forecheck" },
+          { id: "o-zone-offense", label: "O-Zone Offense" },
+          { id: "o-zone-faceoff", label: "O-Zone Faceoff" },
+          { id: "line-changes", label: "Line Changes" }
+        ]
+      },
+      {
+        id: "special-teams",
+        label: "Special Teams",
+        navId: "systems-nav-special-teams",
+        items: [
+          { id: "pk-5-4", label: "Penalty Kill (5v4)" },
+          { id: "pp-5-4", label: "Power Play (5v4)" },
+          { id: "pk-5-3", label: "Penalty Kill (5v3)" },
+          { id: "pp-5-3", label: "Power Play (5v3)" }
+        ]
+      }
     ];
+
+    const systemItems = systemGroups.flatMap((group) => group.items);
 
     const referenceItems = [
       { id: "communication", label: "Communication" },
@@ -2085,18 +2131,25 @@
     }
 
     function renderSystemsNavigation() {
-      const mainNav = document.getElementById("systems-nav-main");
       const referenceNav = document.getElementById("systems-nav-reference");
       const mobileSelect = document.getElementById("systems-mobile-select");
 
-      mainNav.innerHTML = systemItems.map((item) => systemButtonTemplate(item)).join("");
+      systemGroups.forEach((group) => {
+        const groupNav = document.getElementById(group.navId);
+        if (groupNav) {
+          groupNav.innerHTML = group.items.map((item) => systemButtonTemplate(item)).join("");
+        }
+      });
+
       referenceNav.innerHTML = referenceItems.map((item) => systemButtonTemplate(item)).join("");
 
       if (mobileSelect) {
         mobileSelect.innerHTML = `
-          <optgroup label="Systems">
-            ${systemItems.map((item) => systemOptionTemplate(item)).join("")}
-          </optgroup>
+          ${systemGroups.map((group) => `
+            <optgroup label="${group.label}">
+              ${group.items.map((item) => systemOptionTemplate(item)).join("")}
+            </optgroup>
+          `).join("")}
           <optgroup label="Reference">
             ${referenceItems.map((item) => systemOptionTemplate(item)).join("")}
           </optgroup>
