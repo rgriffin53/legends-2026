@@ -1694,9 +1694,7 @@
       neutralZoneTrapStep: 0,
       neutralZoneTrapSelectedPlayer: null,
       backcheckStep: 0,
-      backcheckSelectedPlayer: null,
-      lineChangesStep: 0,
-      lineChangesSelectedPlayer: null
+      backcheckSelectedPlayer: null
     };
 
     const northStarSections = {
@@ -2112,41 +2110,6 @@
     };
 
 
-    const lineChanges = {
-      title: "Line Changes",
-      objective: "Get the ball deep, change safely, and slow the opponent's breakout.",
-      steps: [
-        {
-          title: "Dump and Change",
-          objective: "Get the ball deep. One forward stays on while everyone else changes quickly.",
-          image: "assets/hockey_systems_images/line-change_frame-1_dump.png",
-          imageAlt: "Line Changes Step 1 diagram showing the ball dumped deep, F1 delaying the breakout, and the remaining players changing at the bench.",
-          focus: [
-            { player: "F1", cue: "Delay", point: "Even if you're tired, pressure the ball carrier just enough to slow the breakout. Stay between the ball and the middle until the new line arrives." }
-          ],
-          support: [
-            { player: "Old Line", cue: "Change", point: "Sprint all the way to the bench. Don't stop running until you're off the floor." },
-            { player: "New Line", cue: "Ready", point: "Know who you're changing for. Communicate, and leave the bench once your player is within about 10 steps of the bench." }
-          ]
-        },
-        {
-          title: "Sprint to Trap Positions",
-          objective: "Sprint into position, take away the far side first, then rebuild our trap.",
-          image: "assets/hockey_systems_images/line-change_frame-2_change.png",
-          imageAlt: "Line Changes Step 2 diagram showing F2 taking over ball-side pressure, F3 sprinting to the far side, and the defense rebuilding neutral-zone trap positions.",
-          focus: [
-            { player: "F1", cue: "Finish the Change", point: "Delay the breakout as long as possible, then change safely once F2 has taken over." },
-            { player: "F2", cue: "Relieve F1", point: "Sprint directly to the ball side and take over pressure so F1 can finish the line change." },
-            { player: "F3", cue: "Far Side First", point: "Sprint to the far side of the rink first. Take away the opponent's most dangerous breakout option." }
-          ],
-          support: [
-            { player: "D1 & D2", cue: "Trap Positions", point: "Sprint into your regular neutral-zone trap positions. Keep the play in front of you and be ready to react." }
-          ]
-        }
-      ]
-    };
-
-
     const neutralZoneTrap = {
       title: "Neutral-Zone Trap",
       objective: "Protect the middle and steer the attack to the boards, where we pressure them into giving the ball away.",
@@ -2428,7 +2391,7 @@
     }
 
     function systemButtonTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking";
 
       return `
         <button class="systems-nav__button" type="button" data-system-target="${item.id}">
@@ -2440,7 +2403,7 @@
     }
 
     function systemOptionTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking";
       return `<option value="${item.id}">${isComplete ? "" : "🚧 "}${item.label}</option>`;
     }
 
@@ -2692,18 +2655,6 @@
       });
     }
 
-    function renderLineChanges() {
-      renderSystemStoryboard({
-        system: lineChanges,
-        systemKey: "line-changes",
-        stepStateKey: "lineChangesStep",
-        playerStateKey: "lineChangesSelectedPlayer",
-        headingId: "line-changes-title",
-        ariaLabel: "Line Changes",
-        showZoneLabels: true
-      });
-    }
-
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
@@ -2715,8 +2666,7 @@
       const isDZoneBreakout = appState.activeSystem === "d-zone-breakout";
       const isDZoneFaceoff = appState.activeSystem === "d-zone-faceoff";
       const isBackcheck = appState.activeSystem === "backchecking";
-      const isLineChanges = appState.activeSystem === "line-changes";
-      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges;
+      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck;
 
       if (mobileHint) {
         mobileHint.textContent = `Current topic: ${activeItem.label}`;
@@ -2744,11 +2694,6 @@
 
       if (isBackcheck) {
         renderBackcheck();
-        return;
-      }
-
-      if (isLineChanges) {
-        renderLineChanges();
         return;
       }
 
