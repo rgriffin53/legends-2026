@@ -2772,9 +2772,41 @@
     }
 
     /* =========================================================
+       System Image Preloading
+       ========================================================= */
+    const preloadedSystemImages = [];
+
+    function preloadSystemImages() {
+      const systemsWithImages = [
+        dZoneCoverage,
+        dZoneBreakout,
+        dZoneFaceoff,
+        neutralZoneTrap,
+        backcheck
+      ];
+
+      const imageSources = [
+        ...new Set(
+          systemsWithImages.flatMap((system) =>
+            (system.steps || system.frames || [])
+              .map((step) => step.image)
+              .filter(Boolean)
+          )
+        )
+      ];
+
+      imageSources.forEach((src) => {
+        const image = new Image();
+        image.src = src;
+        preloadedSystemImages.push(image);
+      });
+    }
+
+    /* =========================================================
        App Initialization
        ========================================================= */
     function initApp() {
+      preloadSystemImages();
       bindPrimaryNavigation();
       bindNorthStarNavigation();
       bindSystemsSidebarScrollChaining();
