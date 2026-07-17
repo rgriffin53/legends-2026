@@ -1698,13 +1698,7 @@
       lineChangesStep: 0,
       lineChangesSelectedPlayer: null,
       oZoneEntryStep: 0,
-      oZoneEntrySelectedPlayer: null,
-      oZoneForecheckStep: 0,
-      oZoneForecheckSelectedPlayer: null,
-      oZoneAttackStep: 0,
-      oZoneAttackSelectedPlayer: null,
-      oZoneFaceoffStep: 0,
-      oZoneFaceoffSelectedPlayer: null
+      oZoneEntrySelectedPlayer: null
     };
 
     const northStarSections = {
@@ -1916,7 +1910,7 @@
         items: [
           { id: "o-zone-entry", label: "O-Zone Entry" },
           { id: "o-zone-forecheck", label: "O-Zone Forecheck" },
-          { id: "o-zone-offense", label: "O-Zone Attack" },
+          { id: "o-zone-offense", label: "O-Zone Offense" },
           { id: "o-zone-faceoff", label: "O-Zone Faceoff" }
         ]
       },
@@ -2084,59 +2078,6 @@
     };
 
 
-    const oZoneFaceoff = {
-      title: "O-Zone Faceoff",
-      objective: "Know your responsibility. If we win it, everything goes to the net. If we lose it, establish our forecheck immediately.",
-      steps: [
-        {
-          title: "Set Up the Draw",
-          objective: "Set up the draw. Know your responsibility for both outcomes.",
-          image: "assets/hockey_systems_images/o-zone-faceoff_frame-1_setup.png",
-          imageAlt: "O-Zone faceoff setup showing USA positions and responsibilities for both outcomes.",
-          focus: [
-            { player: "C", cue: "Win and Tie Up", point: "Try to win the ball cleanly. Do not let their center through." },
-            { player: "LW", cue: "Wall Support", point: "Tie up your forward. Help win a loose ball or bump it back to D1." },
-            { player: "D1", cue: "Shooting Option", point: "Be ready to receive the draw and shoot immediately." }
-          ],
-          support: [
-            { player: "RW", cue: "Net-Side Support", point: "Be ready to attack the net if we win or pressure behind the net if we lose." },
-            { player: "D2", cue: "Safety", point: "Stay above the play and be ready for either outcome." }
-          ]
-        },
-        {
-          title: "Lose the Draw",
-          objective: "Lose the draw: establish our forecheck and force a rushed decision.",
-          image: "assets/hockey_systems_images/o-zone-faceoff_frame-2_loss.png",
-          imageAlt: "O-Zone faceoff loss showing immediate forecheck pressure and support positions.",
-          focus: [
-            { player: "LW", cue: "Hard Pressure", point: "Attack their D aggressively. Force her back into pressure or into a panicked play." },
-            { player: "C", cue: "High Support", point: "Recover high through the middle and support the forecheck." },
-            { player: "RW", cue: "Far-Side Pressure", point: "Get to the far post. Pressure their D if she comes around the other side of the net." },
-            { player: "D2", cue: "Far Boards", point: "Hustle across. Be ready if they ring the ball around." }
-          ],
-          support: [
-            { player: "D1", cue: "Strong-Side Position", point: "Hold the strong side and keep the play in front of you." }
-          ]
-        },
-        {
-          title: "Win the Draw",
-          objective: "Win the draw: tie up first, then shoot and attack the net.",
-          image: "assets/hockey_systems_images/o-zone-faceoff_frame-3_win.png",
-          imageAlt: "O-Zone faceoff win showing the immediate shot, tie-ups, and net drive.",
-          focus: [
-            { player: "D1", cue: "Shoot", point: "Receive the ball and shoot immediately through traffic." },
-            { player: "LW", cue: "Tie Up", point: "Do not let the board-side forward pressure D1." },
-            { player: "C", cue: "Tie Up", point: "Do not let their center run out to D1." },
-            { player: "RW", cue: "Net Drive", point: "Drive the net and attack rebounds." }
-          ],
-          support: [
-            { player: "D2", cue: "Hold the Line", point: "Stay high and support the attack." }
-          ]
-        }
-      ]
-    };
-
-
     const backcheck = {
       title: "Backcheck",
       objective: "Backcheck from the inside out. Pursue hard and force them wide until our blue line, then find your check.",
@@ -2238,123 +2179,6 @@
           ],
           support: [
             { player: "D1 & D2", cue: "Blue Line Support", point: "Hold the blue line and support the attack." }
-          ]
-        }
-      ]
-    };
-
-
-    const oZoneForecheck = {
-      title: "O-Zone Forecheck",
-      objective: "Protect the middle, steer the breakout to the boards, then pressure together to force a turnover.",
-      steps: [
-        {
-          title: "Steer the Breakout",
-          objective: "Steer the breakout to the boards while protecting the middle.",
-          image: "assets/hockey_systems_images/o-zone-forecheck_frame-1_steer.png",
-          imageAlt: "O-Zone Forecheck Step 1 diagram showing F1 steering the breakout toward the boards while F2 protects the middle, F3 protects the weak side, and the defense holds the blue line.",
-          focus: [
-            { player: "F1", cue: "Steer", point: "Pressure the defender while taking away the middle. Don't try to win the ball—guide the breakout up the wall." },
-            { player: "F2", cue: "Protect Middle", point: "Stay patient in the middle and anticipate the wall pass. Make the boards look open." }
-          ],
-          support: [
-            { player: "F3", cue: "Weak Side", point: "Stay above the play and protect the weak side. If the ball reverses, become the new F2." },
-            { player: "D1 & D2", cue: "Hold the Line", point: "Hold the blue line and be ready to keep the ball in or react if they break through." }
-          ]
-        },
-        {
-          title: "Force the Turnover",
-          objective: "Once the ball commits to the boards, pressure together to force a turnover.",
-          image: "assets/hockey_systems_images/o-zone-forecheck_frame-2_force.png",
-          imageAlt: "O-Zone Forecheck Step 2 diagram showing F2 and D1 pressuring together along the boards while F1 recovers through the middle, F3 supports the weak side, and D2 stays underneath as safety.",
-          focus: [
-            { player: "F2", cue: "Force the Wall", point: "Attack only after the ball is committed to the boards. Arrive aggressively, but don't go early." },
-            { player: "D1", cue: "Support F2", point: "Close with F2 and eliminate space. Be ready to win loose balls or keep the ball in." }
-          ],
-          support: [
-            { player: "F1", cue: "Recover Middle", point: "After steering, recover underneath the play and protect the middle." },
-            { player: "F3", cue: "Weak Side Support", point: "Protect the weak side and be ready if the ball escapes or changes sides." },
-            { player: "D2", cue: "Safety", point: "Stay underneath the pressure. Read chips, reverses, and breakouts that beat the forecheck." }
-          ]
-        }
-      ]
-    };
-
-
-    const oZoneAttack = {
-      title: "O-Zone Attack",
-      objective: "Start from the half wall. Keep moving to create options, then possess until a quality shot opens.",
-      steps: [
-        {
-          title: "Half-Wall Setup",
-          objective: "Read the pressure. The next four steps show the four options for the ball carrier.",
-          image: "assets/hockey_systems_images/o-zone-attack_frame-1_halfwall-setup.png",
-          imageAlt: "O-Zone Attack Step 1 diagram showing the half-wall setup and all supporting options.",
-          focus: [
-            { player: "F1", cue: "Ball Carrier", point: "Protect the ball and read the pressure. Choose the best option." }
-          ],
-          support: [
-            { player: "F2", cue: "Net-Side Support", point: "Stay available below the ball. Be ready to screen, rebound, or receive the cycle." },
-            { player: "F3", cue: "High Slot", point: "Find open space in the high slot. Keep your stick available without clogging the middle." },
-            { player: "D1", cue: "Point Option", point: "Stay on the wall and call for the ball when you're open." },
-            { player: "D2", cue: "Weak-Side Support", point: "Hold the weak side and be ready for a switch or loose ball." }
-          ]
-        },
-        {
-          title: "Quick Shot",
-          objective: "Option 1: If you have space, step to the middle and shoot.",
-          image: "assets/hockey_systems_images/o-zone-attack_frame-2_quick-shot.png",
-          imageAlt: "O-Zone Attack Step 2 diagram showing F1 attacking the middle for a quick shot while F2 screens.",
-          focus: [
-            { player: "F1", cue: "Quick Shot", point: "Attack the middle immediately. Shoot before the lane closes." },
-            { player: "F2", cue: "Screen", point: "Jump to the front and take away the goalie's eyes." }
-          ],
-          support: [
-            { player: "F3", cue: "Back Door", point: "Slide away from the shot lane. Pull the defense with you and be ready for a back-door pass or rebound." },
-            { player: "D1 & D2", cue: "Hold the Line", point: "Stay above the play and be ready for rebounds or clears." }
-          ]
-        },
-        {
-          title: "Point Shot",
-          objective: "Option 2: If the point is open, move it high and shoot through traffic.",
-          image: "assets/hockey_systems_images/o-zone-attack_frame-3_point-shot.png",
-          imageAlt: "O-Zone Attack Step 3 diagram showing F1 using the point and D1 shooting through net-front traffic.",
-          focus: [
-            { player: "F1", cue: "Use the Point", point: "Move the ball to D1 when she's open." },
-            { player: "D1", cue: "Point Shot", point: "Stay on the wall, call for the ball, step to the middle, and shoot through traffic." }
-          ],
-          support: [
-            { player: "F2 & F3", cue: "Net-Front Traffic", point: "Attack the front of the net. Screen, tip, and hunt rebounds." },
-            { player: "D2", cue: "Weak-Side Support", point: "Hold the weak side and be ready for a switch or loose ball." }
-          ]
-        },
-        {
-          title: "Slot Shot",
-          objective: "Option 3: Hit the high slot only when the passing lane is clear.",
-          image: "assets/hockey_systems_images/o-zone-attack_frame-4_slot-shot.png",
-          imageAlt: "O-Zone Attack Step 4 diagram showing a clean slot pass from F1 to F3 for a quick release.",
-          focus: [
-            { player: "F1", cue: "Slot Pass", point: "Make the pass only if the lane is clean. Never force it through traffic." },
-            { player: "F3", cue: "Quick Release", point: "Find the soft spot and shoot immediately." }
-          ],
-          support: [
-            { player: "F2", cue: "Net Front", point: "Jump to the front for the screen and rebound." },
-            { player: "D1 & D2", cue: "Hold the Line", point: "Stay above the play and support the attack." }
-          ]
-        },
-        {
-          title: "Cycle",
-          objective: "Option 4: If nothing is open, cycle and rebuild the attack.",
-          image: "assets/hockey_systems_images/o-zone-attack_frame-5_cycle.png",
-          imageAlt: "O-Zone Attack Step 5 diagram showing F1 cycling the ball, F2 taking the half wall, and F3 supporting low.",
-          focus: [
-            { player: "F1", cue: "Cycle", point: "Move the ball down the wall, then fill the middle." },
-            { player: "F2", cue: "Half Wall", point: "Take over on the half wall and attack with possession." },
-            { player: "F3", cue: "Low Support", point: "Drop below the ball and become the next cycle option." }
-          ],
-          support: [
-            { player: "D1", cue: "Point Support", point: "Stay available above the play." },
-            { player: "D2", cue: "Weak-Side Support", point: "Hold the weak side and be ready for a switch or loose ball." }
           ]
         }
       ]
@@ -2642,7 +2466,7 @@
     }
 
     function systemButtonTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry";
 
       return `
         <button class="systems-nav__button" type="button" data-system-target="${item.id}">
@@ -2654,7 +2478,7 @@
     }
 
     function systemOptionTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry";
       return `<option value="${item.id}">${isComplete ? "" : "🚧 "}${item.label}</option>`;
     }
 
@@ -2930,42 +2754,6 @@
       });
     }
 
-    function renderOZoneForecheck() {
-      renderSystemStoryboard({
-        system: oZoneForecheck,
-        systemKey: "o-zone-forecheck",
-        stepStateKey: "oZoneForecheckStep",
-        playerStateKey: "oZoneForecheckSelectedPlayer",
-        headingId: "o-zone-forecheck-title",
-        ariaLabel: "O-Zone Forecheck",
-        showZoneLabels: true
-      });
-    }
-
-    function renderOZoneAttack() {
-      renderSystemStoryboard({
-        system: oZoneAttack,
-        systemKey: "o-zone-offense",
-        stepStateKey: "oZoneAttackStep",
-        playerStateKey: "oZoneAttackSelectedPlayer",
-        headingId: "o-zone-attack-title",
-        ariaLabel: "O-Zone Attack",
-        showZoneLabels: true
-      });
-    }
-
-    function renderOZoneFaceoff() {
-      renderSystemStoryboard({
-        system: oZoneFaceoff,
-        systemKey: "o-zone-faceoff",
-        stepStateKey: "oZoneFaceoffStep",
-        playerStateKey: "oZoneFaceoffSelectedPlayer",
-        headingId: "o-zone-faceoff-title",
-        ariaLabel: "O-Zone Faceoff",
-        showZoneLabels: false
-      });
-    }
-
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
@@ -2979,10 +2767,7 @@
       const isBackcheck = appState.activeSystem === "backchecking";
       const isLineChanges = appState.activeSystem === "line-changes";
       const isOZoneEntry = appState.activeSystem === "o-zone-entry";
-      const isOZoneForecheck = appState.activeSystem === "o-zone-forecheck";
-      const isOZoneAttack = appState.activeSystem === "o-zone-offense";
-      const isOZoneFaceoff = appState.activeSystem === "o-zone-faceoff";
-      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack || isOZoneFaceoff;
+      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry;
 
       if (mobileHint) {
         mobileHint.textContent = `Current topic: ${activeItem.label}`;
@@ -3020,21 +2805,6 @@
 
       if (isOZoneEntry) {
         renderOZoneEntry();
-        return;
-      }
-
-      if (isOZoneForecheck) {
-        renderOZoneForecheck();
-        return;
-      }
-
-      if (isOZoneAttack) {
-        renderOZoneAttack();
-        return;
-      }
-
-      if (isOZoneFaceoff) {
-        renderOZoneFaceoff();
         return;
       }
 
@@ -3122,7 +2892,6 @@
         dZoneCoverage,
         dZoneBreakout,
         dZoneFaceoff,
-        oZoneFaceoff,
         neutralZoneTrap,
         backcheck
       ];

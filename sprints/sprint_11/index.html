@@ -1702,9 +1702,7 @@
       oZoneForecheckStep: 0,
       oZoneForecheckSelectedPlayer: null,
       oZoneAttackStep: 0,
-      oZoneAttackSelectedPlayer: null,
-      oZoneFaceoffStep: 0,
-      oZoneFaceoffSelectedPlayer: null
+      oZoneAttackSelectedPlayer: null
     };
 
     const northStarSections = {
@@ -2078,59 +2076,6 @@
             { player: "C", cue: "Hold, Release, Stretch", point: "Hold your check. Then release through the middle." },
             { player: "D1", cue: "Hold, Release, Support", point: "Hold your check. Then support the breakout." },
             { player: "LW", cue: "Hold, Release, Stretch", point: "Hold your check. Then stretch the zone." }
-          ]
-        }
-      ]
-    };
-
-
-    const oZoneFaceoff = {
-      title: "O-Zone Faceoff",
-      objective: "Know your responsibility. If we win it, everything goes to the net. If we lose it, establish our forecheck immediately.",
-      steps: [
-        {
-          title: "Set Up the Draw",
-          objective: "Set up the draw. Know your responsibility for both outcomes.",
-          image: "assets/hockey_systems_images/o-zone-faceoff_frame-1_setup.png",
-          imageAlt: "O-Zone faceoff setup showing USA positions and responsibilities for both outcomes.",
-          focus: [
-            { player: "C", cue: "Win and Tie Up", point: "Try to win the ball cleanly. Do not let their center through." },
-            { player: "LW", cue: "Wall Support", point: "Tie up your forward. Help win a loose ball or bump it back to D1." },
-            { player: "D1", cue: "Shooting Option", point: "Be ready to receive the draw and shoot immediately." }
-          ],
-          support: [
-            { player: "RW", cue: "Net-Side Support", point: "Be ready to attack the net if we win or pressure behind the net if we lose." },
-            { player: "D2", cue: "Safety", point: "Stay above the play and be ready for either outcome." }
-          ]
-        },
-        {
-          title: "Lose the Draw",
-          objective: "Lose the draw: establish our forecheck and force a rushed decision.",
-          image: "assets/hockey_systems_images/o-zone-faceoff_frame-2_loss.png",
-          imageAlt: "O-Zone faceoff loss showing immediate forecheck pressure and support positions.",
-          focus: [
-            { player: "LW", cue: "Hard Pressure", point: "Attack their D aggressively. Force her back into pressure or into a panicked play." },
-            { player: "C", cue: "High Support", point: "Recover high through the middle and support the forecheck." },
-            { player: "RW", cue: "Far-Side Pressure", point: "Get to the far post. Pressure their D if she comes around the other side of the net." },
-            { player: "D2", cue: "Far Boards", point: "Hustle across. Be ready if they ring the ball around." }
-          ],
-          support: [
-            { player: "D1", cue: "Strong-Side Position", point: "Hold the strong side and keep the play in front of you." }
-          ]
-        },
-        {
-          title: "Win the Draw",
-          objective: "Win the draw: tie up first, then shoot and attack the net.",
-          image: "assets/hockey_systems_images/o-zone-faceoff_frame-3_win.png",
-          imageAlt: "O-Zone faceoff win showing the immediate shot, tie-ups, and net drive.",
-          focus: [
-            { player: "D1", cue: "Shoot", point: "Receive the ball and shoot immediately through traffic." },
-            { player: "LW", cue: "Tie Up", point: "Do not let the board-side forward pressure D1." },
-            { player: "C", cue: "Tie Up", point: "Do not let their center run out to D1." },
-            { player: "RW", cue: "Net Drive", point: "Drive the net and attack rebounds." }
-          ],
-          support: [
-            { player: "D2", cue: "Hold the Line", point: "Stay high and support the attack." }
           ]
         }
       ]
@@ -2642,7 +2587,7 @@
     }
 
     function systemButtonTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense";
 
       return `
         <button class="systems-nav__button" type="button" data-system-target="${item.id}">
@@ -2654,7 +2599,7 @@
     }
 
     function systemOptionTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense";
       return `<option value="${item.id}">${isComplete ? "" : "🚧 "}${item.label}</option>`;
     }
 
@@ -2954,18 +2899,6 @@
       });
     }
 
-    function renderOZoneFaceoff() {
-      renderSystemStoryboard({
-        system: oZoneFaceoff,
-        systemKey: "o-zone-faceoff",
-        stepStateKey: "oZoneFaceoffStep",
-        playerStateKey: "oZoneFaceoffSelectedPlayer",
-        headingId: "o-zone-faceoff-title",
-        ariaLabel: "O-Zone Faceoff",
-        showZoneLabels: false
-      });
-    }
-
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
@@ -2981,8 +2914,7 @@
       const isOZoneEntry = appState.activeSystem === "o-zone-entry";
       const isOZoneForecheck = appState.activeSystem === "o-zone-forecheck";
       const isOZoneAttack = appState.activeSystem === "o-zone-offense";
-      const isOZoneFaceoff = appState.activeSystem === "o-zone-faceoff";
-      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack || isOZoneFaceoff;
+      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack;
 
       if (mobileHint) {
         mobileHint.textContent = `Current topic: ${activeItem.label}`;
@@ -3030,11 +2962,6 @@
 
       if (isOZoneAttack) {
         renderOZoneAttack();
-        return;
-      }
-
-      if (isOZoneFaceoff) {
-        renderOZoneFaceoff();
         return;
       }
 
@@ -3122,7 +3049,6 @@
         dZoneCoverage,
         dZoneBreakout,
         dZoneFaceoff,
-        oZoneFaceoff,
         neutralZoneTrap,
         backcheck
       ];
