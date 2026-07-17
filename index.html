@@ -1696,7 +1696,9 @@
       backcheckStep: 0,
       backcheckSelectedPlayer: null,
       lineChangesStep: 0,
-      lineChangesSelectedPlayer: null
+      lineChangesSelectedPlayer: null,
+      oZoneEntryStep: 0,
+      oZoneEntrySelectedPlayer: null
     };
 
     const northStarSections = {
@@ -2147,6 +2149,42 @@
     };
 
 
+    const oZoneEntry = {
+      title: "O-Zone Entry",
+      objective: "Get the ball deep or carry it in with support. Keep it out of the middle until a quality opportunity opens.",
+      steps: [
+        {
+          title: "Dump and Chase",
+          objective: "If you don't have space to enter with support, dump it deep and establish our forecheck.",
+          image: "assets/hockey_systems_images/o-zone-entry_frame-1_dump-and-chase.png",
+          imageAlt: "O-Zone Entry Step 1 diagram showing F1 dumping the ball deep, F2 entering as the first forechecker, F3 supporting through the middle, and the defense holding support positions.",
+          focus: [
+            { player: "F1", cue: "Get It Deep", point: "Gain the red line if possible, then dump the ball behind their defense. Don't force plays through the middle." },
+            { player: "F2", cue: "First Forechecker", point: "Sprint in first and pressure the defender into a rushed play." }
+          ],
+          support: [
+            { player: "F3", cue: "Middle Support", point: "Support through the middle, then shade toward the dump and join the forecheck." },
+            { player: "D1 & D2", cue: "Offensive Support", point: "Hold your support positions." }
+          ]
+        },
+        {
+          title: "Controlled Entry",
+          objective: "Controlled entry. Create width and depth: enter wide, drive the net, and keep high support.",
+          image: "assets/hockey_systems_images/o-zone-entry_frame-2_controlled-entry.png",
+          imageAlt: "O-Zone Entry Step 2 diagram showing F1 driving wide with the ball, F2 driving the far post, F3 providing high same-side support, and the defense holding the blue line.",
+          focus: [
+            { player: "F1", cue: "Drive Wide", point: "Protect the ball and look to shoot. Drive wide before passing or attacking the net." },
+            { player: "F2", cue: "Net Drive", point: "Drive hard to the far post. Push their inside defender back toward the net and be ready for a pass or rebound." },
+            { player: "F3", cue: "High Support", point: "Stay behind the ball carrier on the same side of the rink. Be the safe outlet without forcing a pass through the middle." }
+          ],
+          support: [
+            { player: "D1 & D2", cue: "Blue Line Support", point: "Hold the blue line and support the attack." }
+          ]
+        }
+      ]
+    };
+
+
     const neutralZoneTrap = {
       title: "Neutral-Zone Trap",
       objective: "Protect the middle and steer the attack to the boards, where we pressure them into giving the ball away.",
@@ -2428,7 +2466,7 @@
     }
 
     function systemButtonTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry";
 
       return `
         <button class="systems-nav__button" type="button" data-system-target="${item.id}">
@@ -2440,7 +2478,7 @@
     }
 
     function systemOptionTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry";
       return `<option value="${item.id}">${isComplete ? "" : "🚧 "}${item.label}</option>`;
     }
 
@@ -2704,6 +2742,18 @@
       });
     }
 
+    function renderOZoneEntry() {
+      renderSystemStoryboard({
+        system: oZoneEntry,
+        systemKey: "o-zone-entry",
+        stepStateKey: "oZoneEntryStep",
+        playerStateKey: "oZoneEntrySelectedPlayer",
+        headingId: "o-zone-entry-title",
+        ariaLabel: "O-Zone Entry",
+        showZoneLabels: true
+      });
+    }
+
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
@@ -2716,7 +2766,8 @@
       const isDZoneFaceoff = appState.activeSystem === "d-zone-faceoff";
       const isBackcheck = appState.activeSystem === "backchecking";
       const isLineChanges = appState.activeSystem === "line-changes";
-      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges;
+      const isOZoneEntry = appState.activeSystem === "o-zone-entry";
+      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry;
 
       if (mobileHint) {
         mobileHint.textContent = `Current topic: ${activeItem.label}`;
@@ -2749,6 +2800,11 @@
 
       if (isLineChanges) {
         renderLineChanges();
+        return;
+      }
+
+      if (isOZoneEntry) {
+        renderOZoneEntry();
         return;
       }
 
