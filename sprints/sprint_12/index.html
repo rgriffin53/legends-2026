@@ -1360,148 +1360,6 @@
       color: var(--color-slate-700);
     }
 
-    /* ---------- On-Dek Communication Reference ---------- */
-    .communication-reference {
-      min-width: 0;
-      width: 100%;
-      display: grid;
-      gap: var(--space-5);
-      margin-top: var(--space-6);
-    }
-
-    .communication-reference__header {
-      display: grid;
-      gap: var(--space-4);
-    }
-
-    .communication-reference__title {
-      margin: 0;
-      color: var(--color-navy-900);
-      font-size: clamp(1.8rem, 4vw, 2.7rem);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
-    }
-
-    .communication-reference__principle {
-      margin: 0;
-      padding: var(--space-5);
-      border-left: 5px solid var(--color-red-600);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      color: var(--color-navy-900);
-      background: var(--color-slate-50);
-      font-size: clamp(1.15rem, 2.4vw, 1.5rem);
-      font-weight: 900;
-      line-height: 1.3;
-      letter-spacing: -0.025em;
-    }
-
-    .communication-reference__intro {
-      margin: 0;
-      color: var(--color-slate-700);
-      font-size: 1rem;
-      line-height: 1.55;
-    }
-
-    .communication-reference__grid {
-      min-width: 0;
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-4);
-    }
-
-    .communication-reference__section {
-      min-width: 0;
-      padding: var(--space-5);
-      border: 1px solid var(--color-slate-200);
-      border-radius: var(--radius-lg);
-      background: var(--color-white);
-      box-shadow: 0 10px 24px rgba(7, 20, 38, 0.06);
-    }
-
-    .communication-reference__section--full {
-      grid-column: 1 / -1;
-    }
-
-    .communication-reference__section h3 {
-      margin: 0 0 var(--space-4);
-      color: var(--color-navy-900);
-      font-size: 1.12rem;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-    }
-
-    .communication-reference__section > p {
-      margin: 0 0 var(--space-4);
-      color: var(--color-slate-700);
-      line-height: 1.55;
-    }
-
-    .communication-reference__section > p:last-child {
-      margin-bottom: 0;
-    }
-
-    .communication-reference__terms {
-      display: grid;
-      grid-template-columns: minmax(90px, auto) minmax(0, 1fr);
-      gap: 0;
-      margin: 0;
-    }
-
-    .communication-reference__terms dt,
-    .communication-reference__terms dd {
-      margin: 0;
-      padding: 0.62rem 0;
-      border-top: 1px solid var(--color-slate-200);
-    }
-
-    .communication-reference__terms dt:first-of-type,
-    .communication-reference__terms dt:first-of-type + dd {
-      border-top: 0;
-      padding-top: 0;
-    }
-
-    .communication-reference__terms dt {
-      padding-right: var(--space-4);
-      color: var(--color-red-700);
-      font-weight: 900;
-      line-height: 1.35;
-    }
-
-    .communication-reference__terms dd {
-      color: var(--color-slate-700);
-      line-height: 1.45;
-    }
-
-    @media (max-width: 820px) {
-      .communication-reference__grid {
-        grid-template-columns: 1fr;
-      }
-
-      .communication-reference__section--full {
-        grid-column: auto;
-      }
-    }
-
-    @media (max-width: 520px) {
-      .communication-reference__terms {
-        grid-template-columns: 1fr;
-      }
-
-      .communication-reference__terms dt {
-        padding-bottom: 0.15rem;
-        padding-right: 0;
-      }
-
-      .communication-reference__terms dd {
-        padding-top: 0;
-        border-top: 0;
-      }
-
-      .communication-reference__terms dt:first-of-type + dd {
-        padding-top: 0;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       .storyboard-frame {
         animation: none;
@@ -2078,7 +1936,7 @@
     const systemItems = systemGroups.flatMap((group) => group.items);
 
     const referenceItems = [
-      { id: "communication", label: "On-Dek Communication" },
+      { id: "communication", label: "Communication" },
       { id: "terminology", label: "Terminology" }
     ];
 
@@ -2784,7 +2642,7 @@
     }
 
     function systemButtonTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff" || item.id === "communication";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff";
 
       return `
         <button class="systems-nav__button" type="button" data-system-target="${item.id}">
@@ -2796,7 +2654,7 @@
     }
 
     function systemOptionTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff" || item.id === "communication";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff";
       return `<option value="${item.id}">${isComplete ? "" : "🚧 "}${item.label}</option>`;
     }
 
@@ -3108,72 +2966,6 @@
       });
     }
 
-    function renderCommunicationReference() {
-      const contentPanel = document.getElementById("systems-content-panel");
-
-      contentPanel.innerHTML = `
-        <section class="communication-reference" aria-labelledby="communication-reference-title">
-          <header class="communication-reference__header">
-            <h2 id="communication-reference-title" class="communication-reference__title">On-Dek Communication</h2>
-            <p class="communication-reference__principle">Communication isn’t about talking more—it’s about saying the right thing at the right time.</p>
-            <p class="communication-reference__intro">The most critical communication comes from players <strong>without the ball</strong>. <em>Act as an extra pair of eyes for the ball carrier.</em></p>
-          </header>
-
-          <div class="storyboard-divider"></div>
-
-          <div class="communication-reference__grid">
-            <section class="communication-reference__section">
-              <h3>D-Zone Coverage</h3>
-              <p>The goalie often has the best view of the play. <strong>Defense should be listening to the goalie.</strong></p>
-              <dl class="communication-reference__terms">
-                <dt><strong>Switch</strong></dt><dd>Exchange defensive assignments.</dd>
-                <dt><strong>Screen</strong></dt><dd>An attacker is screening the goalie.</dd>
-                <dt><strong>Back Door</strong></dt><dd>A weak-side attacker is uncovered.</dd>
-                <dt><strong>I’ve got…</strong></dt><dd>Communicate your coverage—for example, <em>ball, net, back door, high,</em> or <em>corner.</em></dd>
-              </dl>
-            </section>
-
-            <section class="communication-reference__section">
-              <h3>D-Zone Breakout</h3>
-              <dl class="communication-reference__terms">
-                <dt><strong>Time</strong></dt><dd>No immediate pressure.</dd>
-                <dt><strong>One On</strong></dt><dd>Pressure is arriving now.</dd>
-                <dt><strong>Middle</strong></dt><dd>You have a passing option through the middle.</dd>
-                <dt><strong>Boards</strong></dt><dd>The wall outlet is available.</dd>
-                <dt><strong>Reverse</strong></dt><dd>Reverse behind the pressure—<em>I’m here.</em></dd>
-                <dt><strong>Wheel</strong></dt><dd>Carry the ball yourself. There is space.</dd>
-                <dt><strong>Chip</strong></dt><dd>Safely advance the ball up the boards.</dd>
-                <dt><strong>Stretch</strong></dt><dd>A teammate is available deep.</dd>
-              </dl>
-            </section>
-
-            <section class="communication-reference__section">
-              <h3>Offensive Zone Possession</h3>
-              <dl class="communication-reference__terms">
-                <dt><strong>Cycle</strong></dt><dd>Low support is available.</dd>
-                <dt><strong>Point</strong></dt><dd>The point is open.</dd>
-                <dt><strong>Middle</strong></dt><dd>A passing lane into the middle is open.</dd>
-                <dt><strong>Shot</strong></dt><dd>Shoot now.</dd>
-                <dt><strong>Deep</strong></dt><dd>Put the ball deep and continue the attack.</dd>
-                <dt><strong>No</strong></dt><dd>Do not make the play you are looking at.</dd>
-              </dl>
-            </section>
-
-            <section class="communication-reference__section communication-reference__section--full">
-              <h3>Face-Off Communication</h3>
-              <p><strong>Align on the plan before the ball drops.</strong></p>
-              <p>Everyone should know their assignment before lining up. The center checks that everyone is ready before putting their stick down.</p>
-            </section>
-
-            <section class="communication-reference__section communication-reference__section--full">
-              <h3>Bench Communication</h3>
-              <p>Always know which line is up next and which player you are subbing for. Explicitly assert “I’ve got [name]” to your line mates before every shift to avoid confusion. Take responsibility for tracking your player and react swiftly when they come to the bench for a change.</p>
-            </section>
-          </div>
-        </section>
-      `;
-    }
-
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
@@ -3190,8 +2982,7 @@
       const isOZoneForecheck = appState.activeSystem === "o-zone-forecheck";
       const isOZoneAttack = appState.activeSystem === "o-zone-offense";
       const isOZoneFaceoff = appState.activeSystem === "o-zone-faceoff";
-      const isCommunication = appState.activeSystem === "communication";
-      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack || isOZoneFaceoff || isCommunication;
+      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack || isOZoneFaceoff;
 
       if (mobileHint) {
         mobileHint.textContent = `Current topic: ${activeItem.label}`;
@@ -3200,11 +2991,6 @@
       if (placeholderNote) {
         placeholderNote.style.display = isCompleteSystem ? "none" : "inline-flex";
         placeholderNote.setAttribute("aria-hidden", isCompleteSystem ? "true" : "false");
-      }
-
-      if (isCommunication) {
-        renderCommunicationReference();
-        return;
       }
 
       if (isDZoneCoverage) {
