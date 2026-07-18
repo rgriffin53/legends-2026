@@ -8,7 +8,6 @@
   <style>
     /* =========================================================
        2026 USA Women's Legends — Interactive Team Guide
-       Sprint 0: Architectural Foundation
        ========================================================= */
 
     /* ---------- Design Tokens ---------- */
@@ -1904,8 +1903,8 @@
           <nav class="secondary-nav" aria-label="North Star navigation">
             <button class="secondary-nav__button is-active" type="button" data-north-star-target="who-we-are">Who We Are</button>
             <button class="secondary-nav__button" type="button" data-north-star-target="how-we-win">How We Win</button>
-            <button class="secondary-nav__button" type="button" data-north-star-target="mindset-without-ball">Mindset — Without the Ball</button>
-            <button class="secondary-nav__button" type="button" data-north-star-target="mindset-with-ball">Mindset — With the Ball</button>
+            <button class="secondary-nav__button" type="button" data-north-star-target="mindset-without-ball">Mindset — Without Ball</button>
+            <button class="secondary-nav__button" type="button" data-north-star-target="mindset-with-ball">Mindset — With Ball</button>
           </nav>
 
           <div id="north-star-content" class="north-star-content" aria-live="polite"></div>
@@ -1993,23 +1992,23 @@
       "who-we-are": {
         title: "Who We Are",
         eyebrow: "North Star Identity",
-        intro: "Three standards we carry into every practice, shift, and team moment.",
+        intro: "Three standards we carry into every practice, shift, and moment.",
         type: "cards",
         items: [
           {
             title: "Discipline",
             tagline: "Team-first habits",
-            text: "We do the little things consistently. We prepare well, communicate clearly, stay organized, and choose the team-first play over the individual play."
+            text: "We do the little things consistently. We prepare well, communicate clearly, stay organized, and always choose the team-first play."
           },
           {
             title: "Resilience",
             tagline: "Next shift",
-            text: "We respond to adversity with composure. Mistakes will happen; our job is to recover quickly, support one another, and play the next shift."
+            text: "We respond to adversity with composure. Mistakes happen; we recover quickly, support one another, and respond the next shift."
           },
           {
             title: "Legacy",
             tagline: "Set the standard",
-            text: "We are the first USA Women's Legends team. The standard we set in how we compete, treat one another, and represent the program will shape what comes next."
+            text: "We are the first USA Women's Legends team. The way we compete, treat one another, and represent the program will shape what comes next."
           }
         ]
       },
@@ -2020,28 +2019,28 @@
         type: "cards",
         items: [
           {
-            title: "Defend First. Attack Second.",
+            title: "Defend First, Attack Second.",
             tagline: "Protect the team",
-            text: "When in doubt, make the play that protects the team. Safe, disciplined decisions keep us in games and create better chances to attack."
+            text: "When in doubt, make the play that protects the team. Safe, disciplined decisions will keep us in games."
           },
           {
-            title: "Win the Transition",
-            tagline: "First 1–2 seconds",
+            title: "Win Transitions",
+            tagline: "React quickly",
             text: "The first 1–2 seconds after a change of possession create the biggest opportunities and the biggest breakdowns. React immediately when we win or lose the ball."
           },
           {
-            title: "Make the Next Simple Play",
+            title: "Keep It Simple",
             tagline: "Predictable support",
-            text: "Be predictable to your teammates. Communicate constantly, support the ball carrier, and choose the highest-percentage play."
+            text: "Be predictable to your teammates. Study our systems so you understand how all the roles fit together and communicate using our shared vocabulary."
           }
         ]
       },
       "mindset-with-ball": {
-        title: "Mindset — With the Ball",
+        title: "Mindset — With Ball",
         eyebrow: "Offensive Mindset",
         type: "mindset-with-ball",
         bannerTitle: "Gaining possession changes everything.",
-        bannerText: "The moment we gain full possession, immediately shift from defending to attacking. Support the ball, communicate, and look for openings to generate offense.",
+        bannerText: "The moment we gain full possession, immediately shift from defending to attacking. Look to generate offense.",
         zones: [
           {
             id: "defensive",
@@ -2050,7 +2049,7 @@
             principles: [
               {
                 title: "Use the boards.",
-                text: "If you're under pressure, use the boards or glass. A safe exit is always better than a turnover."
+                text: "If you're under pressure, use the boards or glass to get the ball out of the defensive zone. A safe exit is always better than a turnover."
               },
               {
                 title: "Support the ball.",
@@ -2058,7 +2057,7 @@
               },
               {
                 title: "Keep it out of the middle.",
-                text: "Only pass through the middle if you're confident it's tape-to-tape. Blind middle passes create high-danger turnovers."
+                text: "Do not pass through the middle unless you're very confident. Blind passes to the middle create high-danger turnovers."
               }
             ]
           },
@@ -2073,11 +2072,11 @@
               },
               {
                 title: "Carry if it's there.",
-                text: "If nobody is pressuring you, keep possession and carry it into the offensive zone."
+                text: "If nobody is pressuring you, keep possession and carry it into the offensive zone under control."
               },
               {
                 title: "Keep it out of the middle.",
-                text: "Default to moving the ball up the boards. Dump it or carry it. Plays to the middle in the neutral zone are risky."
+                text: "Whether dumping or carrying the ball, stay wide (outside the dots). Plays to the middle in the neutral zone are risky."
               }
             ]
           },
@@ -2096,23 +2095,23 @@
               },
               {
                 title: "No blind passes.",
-                text: "Don't start the other team's breakout. Especially below the goal line, never throw blind passes into the slot. Keep possession until you have a quality shot or a high-confidence tape-to-tape pass."
+                text: "Don't start the other team's breakout. Especially below the goal line, **never** throw blind passes into the slot. Keep possession until you have a quality shot or a high-confidence pass."
               }
             ]
           }
         ]
       },
       "mindset-without-ball": {
-        title: "Mindset — Without the Ball",
+        title: "Mindset — Without Ball",
         eyebrow: "Defensive Mindset",
         type: "mindset-with-ball",
         bannerTitle: "Losing possession changes everything.",
-        bannerText: "The moment we lose possession, immediately shift from attacking to defending. Get back quickly, communicate, and shut down their offensive momentum.",
+        bannerText: "The moment we lose possession, immediately shift from attacking to defending. Shut down their offense.",
         zones: [
           {
             id: "defensive",
             label: "Defensive Zone",
-            objective: "Protect the house.",
+            objective: "Protect the House.",
             principles: [
               {
                 title: "Stay net-side.",
@@ -2120,11 +2119,11 @@
               },
               {
                 title: "Protect the middle.",
-                text: "Keep bodies out of the slot and sticks in passing lanes. Force attackers outside before they can create danger."
+                text: "Keep bodies out of the slot and sticks in passing lanes. Force attackers to play on the perimeter of the zone."
               },
               {
                 title: "Pounce on 50–50 balls.",
-                text: "If you have a real chance to win the ball, go 100%. If not, stay patient, hold your position, and don't waste energy chasing."
+                text: "If you have at least a 50-50 chance to win the ball, go 100%. If not, be patient, maintain good defensive posture, and don't waste energy chasing balls you can't win."
               }
             ]
           },
@@ -2135,14 +2134,14 @@
             principles: [
               {
                 title: "Steer them to the boards.",
-                text: "Take away the middle and guide the ball toward the wall. That is where we can close in on them."
+                text: "Take away the middle and steer the ball toward the wall. That is where we can close in on them."
               },
               {
-                title: "Pinch them on the boards.",
+                title: "Trap them on the boards.",
                 text: "Once they're committed to the wall, close quickly and eliminate their space. Make them dump the ball instead of carrying it in."
               },
               {
-                title: "Protect the red line.",
+                title: "Hold the red line.",
                 text: "Don't give up the red line easily. Stay above the play, keep your gap, and force rushed decisions before they can enter cleanly."
               }
             ]
@@ -2150,19 +2149,19 @@
           {
             id: "offensive",
             label: "Offensive Zone",
-            objective: "Trap them.",
+            objective: "Force a turnover.",
             principles: [
               {
-                title: "Force them up the boards.",
-                text: "First forward pressures the defense and takes away the middle, pushing the breakout up the wall where support is waiting."
+                title: "Steer them to the boards.",
+                text: "Take away the middle and steer the ball toward the wall. That is where we can close in on them."
               },
               {
-                title: "Trap the half wall.",
-                text: "Second forward anticipates the wall play and arrives ready to close the trap, win the ball, or force another rushed pass."
+                title: "Trap them on the boards.",
+                text: "Once they're committed to the wall, close quickly and eliminate their space. Force them to cough up the ball instead of breaking it out cleanly."
               },
               {
-                title: "Keep one forward high.",
-                text: "Third forward stays above the play as our safety. Protect against odd-player rushes and keep pressure alive if the ball comes free."
+                title: "Hold the blue line.",
+                text: "Don't give up the blue line easily. Strong-side defense should anticipate the ball coming up the wall and look to keep it in the zone."
               }
             ]
           }
