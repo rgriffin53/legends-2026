@@ -1502,146 +1502,6 @@
       }
     }
 
-
-    /* ---------- Terminology Reference ---------- */
-    .terminology-reference {
-      min-width: 0;
-      width: 100%;
-      display: grid;
-      gap: var(--space-5);
-      margin-top: var(--space-6);
-    }
-
-    .terminology-reference__header {
-      display: grid;
-      gap: var(--space-2);
-    }
-
-    .terminology-reference__title {
-      margin: 0;
-      color: var(--color-navy-900);
-      font-size: clamp(1.8rem, 4vw, 2.7rem);
-      line-height: 1.05;
-      letter-spacing: -0.045em;
-    }
-
-    .terminology-reference__intro {
-      max-width: 900px;
-      margin: 0;
-      color: var(--color-slate-700);
-      font-size: clamp(0.98rem, 1.7vw, 1.12rem);
-      line-height: 1.55;
-    }
-
-    .terminology-reference__rink {
-      display: grid;
-      gap: var(--space-3);
-    }
-
-    .terminology-reference__groups {
-      display: grid;
-      gap: var(--space-4);
-    }
-
-    .terminology-reference__group {
-      border: 1px solid var(--color-slate-200);
-      border-radius: var(--radius-lg);
-      background: var(--color-white);
-      box-shadow: 0 10px 24px rgba(7, 20, 38, 0.06);
-      overflow: hidden;
-    }
-
-    .terminology-reference__group summary {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: var(--space-4);
-      padding: var(--space-5);
-      color: var(--color-navy-900);
-      cursor: pointer;
-      font-size: 1.12rem;
-      font-weight: 900;
-      line-height: 1.2;
-      letter-spacing: -0.02em;
-      list-style: none;
-    }
-
-    .terminology-reference__group summary::-webkit-details-marker {
-      display: none;
-    }
-
-    .terminology-reference__group summary::after {
-      content: "+";
-      flex: 0 0 auto;
-      width: 1.55rem;
-      height: 1.55rem;
-      display: inline-grid;
-      place-items: center;
-      border-radius: 999px;
-      color: var(--color-white);
-      background: var(--color-red-600);
-      font-size: 1rem;
-      line-height: 1;
-    }
-
-    .terminology-reference__group[open] summary {
-      border-bottom: 1px solid var(--color-slate-200);
-      background: var(--color-slate-50);
-    }
-
-    .terminology-reference__group[open] summary::after {
-      content: "−";
-    }
-
-    .terminology-reference__group summary:hover,
-    .terminology-reference__group summary:focus-visible {
-      outline: none;
-      background: var(--color-slate-50);
-    }
-
-    .terminology-reference__terms {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: var(--space-4);
-      margin: 0;
-      padding: var(--space-5);
-    }
-
-    .terminology-reference__term {
-      min-width: 0;
-      padding: var(--space-4);
-      border-left: 4px solid var(--color-red-600);
-      border-radius: 0 var(--radius-md) var(--radius-md) 0;
-      background: var(--color-slate-50);
-    }
-
-    .terminology-reference__term dt {
-      margin: 0 0 var(--space-2);
-      color: var(--color-navy-900);
-      font-weight: 900;
-      line-height: 1.3;
-    }
-
-    .terminology-reference__term dd {
-      margin: 0;
-      color: var(--color-slate-700);
-      line-height: 1.5;
-    }
-
-    .terminology-reference__term dd p {
-      margin: 0;
-    }
-
-    .terminology-reference__term dd p + p {
-      margin-top: var(--space-3);
-    }
-
-    @media (max-width: 820px) {
-      .terminology-reference__terms {
-        grid-template-columns: 1fr;
-      }
-    }
-
     @media (prefers-reduced-motion: reduce) {
       .storyboard-frame {
         animation: none;
@@ -2924,7 +2784,7 @@
     }
 
     function systemButtonTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff" || item.id === "communication" || item.id === "terminology";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff" || item.id === "communication";
 
       return `
         <button class="systems-nav__button" type="button" data-system-target="${item.id}">
@@ -2936,7 +2796,7 @@
     }
 
     function systemOptionTemplate(item) {
-      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff" || item.id === "communication" || item.id === "terminology";
+      const isComplete = item.id === "neutral-zone-forecheck" || item.id === "d-zone-coverage" || item.id === "d-zone-breakout" || item.id === "d-zone-faceoff" || item.id === "backchecking" || item.id === "line-changes" || item.id === "o-zone-entry" || item.id === "o-zone-forecheck" || item.id === "o-zone-offense" || item.id === "o-zone-faceoff" || item.id === "communication";
       return `<option value="${item.id}">${isComplete ? "" : "🚧 "}${item.label}</option>`;
     }
 
@@ -3244,7 +3104,7 @@
         playerStateKey: "oZoneFaceoffSelectedPlayer",
         headingId: "o-zone-faceoff-title",
         ariaLabel: "O-Zone Faceoff",
-        showZoneLabels: true
+        showZoneLabels: false
       });
     }
 
@@ -3314,108 +3174,6 @@
       `;
     }
 
-
-    function renderTerminologyReference() {
-      const contentPanel = document.getElementById("systems-content-panel");
-
-      contentPanel.innerHTML = `
-        <section class="terminology-reference" aria-labelledby="terminology-reference-title">
-          <header class="terminology-reference__header">
-            <p class="eyebrow">Reference</p>
-            <h2 id="terminology-reference-title" class="terminology-reference__title">Terminology</h2>
-            <p class="terminology-reference__intro">A quick reference for the rink locations, situational roles, and terms used throughout our systems.</p>
-          </header>
-
-          <div class="storyboard-divider"></div>
-
-          <div class="terminology-reference__rink">
-            <figure class="storyboard-diagram">
-              <img src="assets/rink-terminology.png" alt="Full rink terminology diagram identifying the House, Front Door or Slot, High Slot, Half Wall, Point, Strong Side, and Weak Side." />
-            </figure>
-            <div class="storyboard-zone-labels" aria-label="Rink zones">
-              <span>Defensive Zone</span>
-              <span>Neutral Zone</span>
-              <span>Offensive Zone</span>
-            </div>
-          </div>
-
-          <div class="terminology-reference__groups">
-            <details class="terminology-reference__group" open>
-              <summary>Rink Diagram Terms</summary>
-              <dl class="terminology-reference__terms">
-                <div class="terminology-reference__term"><dt>Front Door (Slot)</dt><dd><p>The scoring area immediately in front of the goalie, inside the House.</p><p>Throughout the app, <strong>Front Door</strong> and <strong>Slot</strong> are used interchangeably.</p></dd></div>
-                <div class="terminology-reference__term"><dt>Half Wall</dt><dd>The area along the boards between the corner and the Point.</dd></div>
-                <div class="terminology-reference__term"><dt>High Slot</dt><dd>The area above the Front Door and farther from the net.</dd></div>
-                <div class="terminology-reference__term"><dt>House</dt><dd>The dangerous scoring area in front of the net. Defensively, protecting the House is the highest priority.</dd></div>
-                <div class="terminology-reference__term"><dt>Point</dt><dd>The area near the blue line along the boards.</dd></div>
-                <div class="terminology-reference__term"><dt>Strong Side (Ball Side)</dt><dd>The side of the rink where the ball is located.</dd></div>
-                <div class="terminology-reference__term"><dt>Weak Side (Far Side)</dt><dd>The side of the rink away from the ball.</dd></div>
-              </dl>
-            </details>
-
-            <details class="terminology-reference__group">
-              <summary>Position &amp; Direction</summary>
-              <dl class="terminology-reference__terms">
-                <div class="terminology-reference__term"><dt>Above the Play</dt><dd>Positioned between the play and your own net.</dd></div>
-                <div class="terminology-reference__term"><dt>Back Door</dt><dd>The far side of the net away from the ball.</dd></div>
-                <div class="terminology-reference__term"><dt>Gap</dt><dd>The distance between a defender and the ball carrier.</dd></div>
-                <div class="terminology-reference__term"><dt>Inside Out</dt><dd>Protect the middle first, then pressure toward the outside.</dd></div>
-                <div class="terminology-reference__term"><dt>Inside Position</dt><dd>Positioned closer to the middle of the rink than your opponent.</dd></div>
-                <div class="terminology-reference__term"><dt>Net Side</dt><dd>Positioned between your opponent and your own net.</dd></div>
-              </dl>
-            </details>
-
-            <details class="terminology-reference__group">
-              <summary>Ball Movement</summary>
-              <dl class="terminology-reference__terms">
-                <div class="terminology-reference__term"><dt>Area Pass</dt><dd>A pass into open space for a teammate to run onto rather than directly to their stick.</dd></div>
-                <div class="terminology-reference__term"><dt>Chip</dt><dd>Move the ball a short distance past pressure and into open space.</dd></div>
-                <div class="terminology-reference__term"><dt>Cycle</dt><dd>Move the ball down the wall while teammates rotate into supporting positions.</dd></div>
-                <div class="terminology-reference__term"><dt>D-to-D</dt><dd>A pass between the two defenders.</dd></div>
-                <div class="terminology-reference__term"><dt>Drive the Net</dt><dd>Run hard to the front of the net for a pass or rebound.</dd></div>
-                <div class="terminology-reference__term"><dt>Dump</dt><dd>Send the ball deep into the offensive zone instead of carrying it in.</dd></div>
-                <div class="terminology-reference__term"><dt>Outlet</dt><dd>A safe passing option that helps begin the breakout.</dd></div>
-                <div class="terminology-reference__term"><dt>Reverse</dt><dd>Change the direction of the play behind the net to move the ball away from pressure.</dd></div>
-                <div class="terminology-reference__term"><dt>Ring the Ball</dt><dd>Play the ball around the boards behind the net.</dd></div>
-                <div class="terminology-reference__term"><dt>Screen</dt><dd>Position yourself in front of the goalie to block their view.</dd></div>
-                <div class="terminology-reference__term"><dt>Stretch</dt><dd>Move up the rink to create a longer passing option.</dd></div>
-                <div class="terminology-reference__term"><dt>Tape-to-Tape</dt><dd>A pass delivered directly to a teammate's stick so they can receive it cleanly without adjusting.</dd></div>
-                <div class="terminology-reference__term"><dt>Transition</dt><dd>The moment possession changes from one team to the other.</dd></div>
-                <div class="terminology-reference__term"><dt>Wheel</dt><dd>Carry the ball behind your own net and continue up the other side.</dd></div>
-              </dl>
-            </details>
-
-            <details class="terminology-reference__group">
-              <summary>Defensive Actions</summary>
-              <dl class="terminology-reference__terms">
-                <div class="terminology-reference__term"><dt>Active Stick</dt><dd>Keep your stick engaged to disrupt passes, challenge the ball, and limit options.</dd></div>
-                <div class="terminology-reference__term"><dt>Box Out</dt><dd>Use body position to move or keep an opponent away from the House or Front Door.</dd></div>
-                <div class="terminology-reference__term"><dt>Contain</dt><dd>Prevent the ball carrier from attacking a dangerous area without overcommitting.</dd></div>
-                <div class="terminology-reference__term"><dt>Find Your Check</dt><dd>Identify the opponent you are responsible for defending.</dd></div>
-                <div class="terminology-reference__term"><dt>Force Wide</dt><dd>Guide the ball carrier toward the boards and away from the middle.</dd></div>
-                <div class="terminology-reference__term"><dt>Gap Up</dt><dd>Reduce the distance to the ball carrier under control.</dd></div>
-                <div class="terminology-reference__term"><dt>Get in the Shooting Lane</dt><dd>Position your body between the shooter and the net.</dd></div>
-                <div class="terminology-reference__term"><dt>Pick Up the Trailer</dt><dd>Identify and cover the late player joining the attack.</dd></div>
-                <div class="terminology-reference__term"><dt>Pinch</dt><dd>A defender moves down the boards to pressure the play or keep the ball in the offensive zone.</dd></div>
-                <div class="terminology-reference__term"><dt>Stick in the Passing Lane</dt><dd>Position your stick in the path between the ball carrier and a potential receiver.</dd></div>
-                <div class="terminology-reference__term"><dt>Take Away the Middle</dt><dd>Protect the central area before pressuring toward the outside.</dd></div>
-                <div class="terminology-reference__term"><dt>Tie Up</dt><dd>Limit an opponent's ability to play the ball by controlling their stick or body.</dd></div>
-              </dl>
-            </details>
-
-            <details class="terminology-reference__group">
-              <summary>Contextual Roles</summary>
-              <dl class="terminology-reference__terms">
-                <div class="terminology-reference__term"><dt>Situational Roles</dt><dd><p>Labels such as <strong>F1</strong>, <strong>F2</strong>, <strong>F3</strong>, <strong>D1</strong>, and <strong>D2</strong> describe responsibilities in the current situation, not fixed positions.</p><p>The role depends on each player's location in relation to the ball, the play, and their teammates.</p></dd></div>
-                <div class="terminology-reference__term"><dt>D1 and D2</dt><dd><p><strong>D1</strong> is the defender most directly involved with the ball or immediate pressure.</p><p><strong>D2</strong> is the second defender providing net-front, middle, weak-side, or underneath support.</p><p>These roles change as the play develops.</p></dd></div>
-                <div class="terminology-reference__term"><dt>F1, F2 and F3</dt><dd><p><strong>F1</strong> is the first forward involved in the play.</p><p><strong>F2</strong> is the second forward supporting or anticipating the next play.</p><p><strong>F3</strong> is the third forward providing balance, weak-side support, or defensive safety.</p><p>These roles change as the play develops.</p></dd></div>
-              </dl>
-            </details>
-          </div>
-        </section>
-      `;
-    }
-
     function renderSystemsContent() {
       const allItems = [...systemItems, ...referenceItems];
       const activeItem = allItems.find((item) => item.id === appState.activeSystem);
@@ -3433,8 +3191,7 @@
       const isOZoneAttack = appState.activeSystem === "o-zone-offense";
       const isOZoneFaceoff = appState.activeSystem === "o-zone-faceoff";
       const isCommunication = appState.activeSystem === "communication";
-      const isTerminology = appState.activeSystem === "terminology";
-      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack || isOZoneFaceoff || isCommunication || isTerminology;
+      const isCompleteSystem = isNeutralZoneTrap || isDZoneCoverage || isDZoneBreakout || isDZoneFaceoff || isBackcheck || isLineChanges || isOZoneEntry || isOZoneForecheck || isOZoneAttack || isOZoneFaceoff || isCommunication;
 
       if (mobileHint) {
         mobileHint.textContent = `Current topic: ${activeItem.label}`;
@@ -3447,11 +3204,6 @@
 
       if (isCommunication) {
         renderCommunicationReference();
-        return;
-      }
-
-      if (isTerminology) {
-        renderTerminologyReference();
         return;
       }
 
